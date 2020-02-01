@@ -14,5 +14,5 @@ functions:
     handler: src/functions/helloWorld.handler
     events:
       - http:
-          path: api/helloworld/{name}
-          method: get
+          path: api/helloworld
+          method: post
