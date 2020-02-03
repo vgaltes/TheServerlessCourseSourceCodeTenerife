@@ -23,7 +23,9 @@
   "devDependencies": {
     "jest": "^25.1.0",
     "serverless": "^1.62.0",
+    "serverless-iam-roles-per-function": "^2.0.2",
     "serverless-offline": "^6.0.0-alpha.64",
+    "serverless-pseudo-parameters": "^2.5.0",
     "superagent": "^5.2.1"
   },
   "dependencies": {

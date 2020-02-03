@@ -5370,6 +5370,13 @@ semver@^7.1.1:
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.1.2.tgz#847bae5bce68c5d08889824f02667199b70e3d87"
   integrity sha512-BJs9T/H8sEVHbeigqzIEo57Iu/3DG6c4QoqTfbQB3BPA4zgzAomh/Fk9E7QtjWQ8mx2dgA9YCfSF4y9k9bHNpQ==
 
+serverless-iam-roles-per-function@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/serverless-iam-roles-per-function/-/serverless-iam-roles-per-function-2.0.2.tgz#c64eb2f34552e59d5fb8cb2169ebbd27734a6774"
+  integrity sha512-3zv4Af3x7KJHC4fuJMHniEEstCljMghReaYIg94Spdsqkhiy8GJ3yfJ5Jy+wiG/DvyObK91JJNMjLhDnDc+vCQ==
+  dependencies:
+    lodash "^4.17.15"
+
 serverless-offline@^6.0.0-alpha.64:
   version "6.0.0-alpha.64"
   resolved "https://registry.yarnpkg.com/serverless-offline/-/serverless-offline-6.0.0-alpha.64.tgz#de116c1bcf399dfb2ee7afd04f92cebd4f613b4f"
@@ -5399,6 +5406,11 @@ serverless-offline@^6.0.0-alpha.64:
     update-notifier "^4.0.0"
     velocityjs "^2.0.0"
     ws "^7.2.1"
+
+serverless-pseudo-parameters@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/serverless-pseudo-parameters/-/serverless-pseudo-parameters-2.5.0.tgz#f30bf34db166e4b8b22144a8e65aca71b90dd1e6"
+  integrity sha512-A/O49AR8LL6jlnPSmnOTYgL1KqVgskeRla4sVDeS/r5dHFJlwOU5MgFilc7aaQP8NWAwRJANaIS9oiSE3I+VUA==
 
 serverless@^1.62.0:
   version "1.62.0"

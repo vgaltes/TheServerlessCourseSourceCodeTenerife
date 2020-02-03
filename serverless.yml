@@ -2,6 +2,8 @@ service: gettogether
 
 plugins:
   - serverless-offline
+  - serverless-pseudo-parameters
+  - serverless-iam-roles-per-function
 
 provider:
   name: aws
@@ -16,6 +18,10 @@ functions:
       - http:
           path: api/getTogethers
           method: get
+    iamRoleStatements:
+      - Effect: Allow
+        Action: dynamodb:scan
+        Resource: arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/gettogethers
 
 resources:
   Resources:
