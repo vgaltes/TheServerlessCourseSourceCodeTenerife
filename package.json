@@ -4,7 +4,7 @@
   "description": "Meetup clone",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:integration": "jest ./tests/*",
     "deploy": "serverless deploy --aws-profile serverless-local",
     "run-local": "serverless offline"
   },
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/vgaltes/TheServerlessCourseSourceCodeTenerife#readme",
   "devDependencies": {
+    "jest": "^25.1.0",
     "serverless": "^1.62.0",
     "serverless-offline": "^6.0.0-alpha.64"
   }
