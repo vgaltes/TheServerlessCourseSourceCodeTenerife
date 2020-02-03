@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test:integration": "jest ./tests/*",
+    "test:acceptance": "TEST_MODE=http jest ./tests/*",
     "deploy": "serverless deploy --aws-profile serverless-local",
     "run-local": "serverless offline"
   },
@@ -21,6 +22,7 @@
   "devDependencies": {
     "jest": "^25.1.0",
     "serverless": "^1.62.0",
-    "serverless-offline": "^6.0.0-alpha.64"
+    "serverless-offline": "^6.0.0-alpha.64",
+    "superagent": "^5.2.1"
   }
 }
