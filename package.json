@@ -7,7 +7,8 @@
     "test:integration": "jest ./tests/*",
     "test:acceptance": "TEST_MODE=http jest ./tests/*",
     "deploy": "serverless deploy --aws-profile serverless-local",
-    "run-local": "serverless offline"
+    "run-local": "serverless offline",
+    "seed": "AWS_PROFILE=serverless-local node seedGetTogethers.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,8 @@
     "serverless": "^1.62.0",
     "serverless-offline": "^6.0.0-alpha.64",
     "superagent": "^5.2.1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.610.0"
   }
 }
