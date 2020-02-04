@@ -21,7 +21,7 @@ functions:
     iamRoleStatements:
       - Effect: Allow
         Action: dynamodb:scan
-        Resource: arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/gettogethers
+        Resource: !GetAtt GetTogethersTable.Arn
 
 resources:
   Resources:
