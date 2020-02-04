@@ -8,8 +8,13 @@ plugins:
 provider:
   name: aws
   runtime: nodejs12.x
-  region: eu-west-1
-  stage: dev
+  region: ${opt:region, self:custom.defaultRegion}
+  stage: ${opt:stage, self:custom.defaultStage}
+
+custom:
+  defaultRegion: eu-west-1
+  defaultStage: dev${env:SLSUSER, ""}
+  getTogethersTableName: ${self:provider.stage}-gettogethers
 
 functions:
   getGetTogethers:
@@ -21,14 +26,16 @@ functions:
     iamRoleStatements:
       - Effect: Allow
         Action: dynamodb:scan
-        Resource: arn:aws:dynamodb:#{AWS::Region}:#{AWS::AccountId}:table/gettogethers
+        Resource: !GetAtt GetTogethersTable.Arn
+    environment:
+      getTogethersTableName: ${self:custom.getTogethersTableName}
 
 resources:
   Resources:
     GetTogethersTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: gettogethers
+        TableName: ${self:custom.getTogethersTableName}
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: N
