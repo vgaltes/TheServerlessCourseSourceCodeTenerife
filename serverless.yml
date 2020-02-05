@@ -50,8 +50,15 @@ functions:
       - Effect: Allow
         Action: sns:Publish
         Resource: ${self:custom.joinGetTogetherSnsTopic}
+  testAutoSubscribe:
+    handler: src/functions/testAutoSubscribe.handler
+    events:
+      - http:
+          method: get
+          path: api/testAutoSubscribe
 
 resources:
+  Transform: AWS::Serverless-2016-10-31
   Resources:
     GetTogethersTable:
       Type: AWS::DynamoDB::Table
@@ -64,3 +71,13 @@ resources:
           - AttributeName: id
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
+    SubscribeToApiGatewayLogs:
+      Type: AWS::Serverless::Application
+      Properties:
+        Location:
+          ApplicationId: arn:aws:serverlessrepo:us-east-1:374852340823:applications/auto-subscribe-log-group-to-arn
+          SemanticVersion: 1.11.1
+        Parameters:
+          DestinationArn: arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:cloudwatch-logs-to-logzio-tenerife-${self:provider.stage}-ship-logs-to-logzio
+          Prefix: "/aws/lambda"
+          OverrideManualConfigs: true
