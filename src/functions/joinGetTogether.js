@@ -1,6 +1,6 @@
 const AWS = require("aws-sdk");
 const chance = require("chance").Chance();
-const sns = new AWS.SNS();
+const SNS = require('@dazn/lambda-powertools-sns-client')
 const Log = require('@dazn/lambda-powertools-logger');
 const middy = require("middy");
 const correlationIds = require('@dazn/lambda-powertools-middleware-correlation-ids');
@@ -24,7 +24,7 @@ const handler = async (event, context) => {
     TopicArn: process.env.joinGetTogetherSnsTopic
   };
 
-  await sns.publish(params).promise();
+  await SNS.publish(params).promise();
 
   Log.info("published 'join_getTogether' event", {getTogetherId, userEmail});
 
