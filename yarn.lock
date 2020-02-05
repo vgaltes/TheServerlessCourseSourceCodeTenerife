@@ -159,6 +159,18 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@dazn/lambda-powertools-correlation-ids@^1.8.2":
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/@dazn/lambda-powertools-correlation-ids/-/lambda-powertools-correlation-ids-1.8.2.tgz#2d8156f9723d59825d57c0a71ca289a6b851546b"
+  integrity sha512-zZvahepZI7vC3qvT+z0eVXbt9gJ6vHK0UJcw2IZ5EOhocYfOJhNsaGIv6HdOp8nDGAQkVLH8IY3Ih/wLoBU4Lg==
+
+"@dazn/lambda-powertools-logger@^1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@dazn/lambda-powertools-logger/-/lambda-powertools-logger-1.15.2.tgz#3a729edd8d5c8dbfe34b9ffdbc94c73b2dc2d031"
+  integrity sha512-OYvkpu23xJsK9iVW4shsMA0qtVt7d5KVIeacNbmXMJ3sHRcniIVDOknk3AtlZOFZcPLzU0Keb4dzEmUcAJy6Rg==
+  dependencies:
+    "@dazn/lambda-powertools-correlation-ids" "^1.8.2"
+
 "@hapi/accept@3.x.x":
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/@hapi/accept/-/accept-3.2.3.tgz#6947259928ed28df2736c7daffbfc739b72adfcc"
