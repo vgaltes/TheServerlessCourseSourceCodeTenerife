@@ -2,8 +2,10 @@ const AWS = require("aws-sdk");
 const chance = require("chance").Chance();
 const sns = new AWS.SNS();
 const Log = require('@dazn/lambda-powertools-logger');
+const middy = require("middy");
+const correlationIds = require('@dazn/lambda-powertools-middleware-correlation-ids');
 
-module.exports.handler = async (event, context) => {
+const handler = async (event, context) => {
   const body = JSON.parse(event.body);
   const getTogetherId = body.getTogetherId;
   const userEmail = body.userEmail;
@@ -33,3 +35,6 @@ module.exports.handler = async (event, context) => {
 
   return response;
 };
+
+module.exports.handler = middy(handler)
+  .use(correlationIds({ sampleDebugLogRate: 0 }));

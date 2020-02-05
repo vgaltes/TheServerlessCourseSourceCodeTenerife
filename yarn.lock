@@ -159,7 +159,7 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@dazn/lambda-powertools-correlation-ids@^1.8.2":
+"@dazn/lambda-powertools-correlation-ids@^1.5.0", "@dazn/lambda-powertools-correlation-ids@^1.8.2":
   version "1.8.2"
   resolved "https://registry.yarnpkg.com/@dazn/lambda-powertools-correlation-ids/-/lambda-powertools-correlation-ids-1.8.2.tgz#2d8156f9723d59825d57c0a71ca289a6b851546b"
   integrity sha512-zZvahepZI7vC3qvT+z0eVXbt9gJ6vHK0UJcw2IZ5EOhocYfOJhNsaGIv6HdOp8nDGAQkVLH8IY3Ih/wLoBU4Lg==
@@ -170,6 +170,15 @@
   integrity sha512-OYvkpu23xJsK9iVW4shsMA0qtVt7d5KVIeacNbmXMJ3sHRcniIVDOknk3AtlZOFZcPLzU0Keb4dzEmUcAJy6Rg==
   dependencies:
     "@dazn/lambda-powertools-correlation-ids" "^1.8.2"
+
+"@dazn/lambda-powertools-middleware-correlation-ids@^1.18.0":
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/@dazn/lambda-powertools-middleware-correlation-ids/-/lambda-powertools-middleware-correlation-ids-1.18.0.tgz#046957304f322d9057beb6f4c8fa51a4598961e4"
+  integrity sha512-9rk5TNx2K1AiqdNsAT/PQbu8givMLIv0kgogTQ90XXhHRRZua77rvkWtVLpAA+V0pJZSDYJsmJ5hiExE+eBt0g==
+  dependencies:
+    "@dazn/lambda-powertools-correlation-ids" "^1.5.0"
+    "@dazn/lambda-powertools-logger" "^1.15.2"
+    aws-sdk "^2.496.0"
 
 "@hapi/accept@3.x.x":
   version "3.2.3"
@@ -1103,6 +1112,21 @@ atob@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
+
+aws-sdk@^2.496.0:
+  version "2.612.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.612.0.tgz#3af06638ec785bad10986b81ce265422fca552e3"
+  integrity sha512-/oAeVw9okULGczQLNMAO3/w9sA2ubf/+iqRQRXRjrJXVUi7INV6qYnNzIXzy7GabOkN7xpZiTbVcU+Yij5yrxg==
+  dependencies:
+    buffer "4.9.1"
+    events "1.1.1"
+    ieee754 "1.1.13"
+    jmespath "0.15.0"
+    querystring "0.2.0"
+    sax "1.2.1"
+    url "0.10.3"
+    uuid "3.3.2"
+    xml2js "0.4.19"
 
 aws-sdk@^2.610.0:
   version "2.610.0"
