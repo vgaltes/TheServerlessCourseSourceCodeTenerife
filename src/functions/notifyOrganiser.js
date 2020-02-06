@@ -6,6 +6,10 @@ const correlationIds = require('@dazn/lambda-powertools-middleware-correlation-i
 const handler = async (event, context) => {
   const joinedGetTogether = JSON.parse(event.Records[0].Sns.Message);
 
+  if (joinedGetTogether.getTogetherId === "error"){
+    throw new Error("Simulating error");
+  }
+
   Log.info('notified organiser', {
     getTogetherId: joinedGetTogether.getTogetherId, 
     orderId: joinedGetTogether.orderId, userEmail:joinedGetTogether.userEmail});

@@ -17,6 +17,8 @@ custom:
   getTogethersTableName:  ${self:provider.stage}-gettogethers
   joinGetTogetherSnsTopicName: ${self:provider.stage}-joingettogethers
   joinGetTogetherSnsTopic: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:${self:custom.joinGetTogetherSnsTopicName}
+  notifyOrganiserDLQSnsTopicName: ${self:provider.stage}-joingettogetherdlq
+  notifyOrganiserDLQSnsTopic: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:${self:custom.notifyOrganiserDLQSnsTopicName}
 
 functions:
   getGetTogethers:
@@ -38,6 +40,17 @@ functions:
     handler: src/functions/notifyOrganiser.handler
     events:
       - sns: ${self:custom.joinGetTogetherSnsTopicName}
+    onError: !Ref NotifyOrganiserDLQSnsTopic
+    iamRoleStatements:
+      - Effect: Allow
+        Action: sns:Publish
+        Resource: !Ref NotifyOrganiserDLQSnsTopic
+  notifyOrganiserDLQ:
+    handler: src/functions/notifyOrganiserDLQ.handler
+    events:
+      - sns: 
+          arn: !Ref NotifyOrganiserDLQSnsTopic
+          topicName: ${self:custom.notifyOrganiserDLQSnsTopicName}
   joinGetTogether:
     handler: src/functions/joinGetTogether.handler
     events:
@@ -81,3 +94,7 @@ resources:
           DestinationArn: arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:cloudwatch-logs-to-logzio-tenerife-${self:provider.stage}-ship-logs-to-logzio
           Prefix: "/aws/lambda"
           OverrideManualConfigs: true
+    NotifyOrganiserDLQSnsTopic:
+      Type: AWS::SNS::Topic
+      Properties: 
+        TopicName: ${self:custom.notifyOrganiserDLQSnsTopicName}
