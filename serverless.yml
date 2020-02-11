@@ -4,12 +4,25 @@ plugins:
   - serverless-offline
   - serverless-pseudo-parameters
   - serverless-iam-roles-per-function
+  - serverless-plugin-tracing
+
+package:
+  exclude: 
+    - cloudwatch-logs-to-logzio/**
+    - tests/**
 
 provider:
   name: aws
   runtime: nodejs12.x
   region: ${opt:region, self:custom.defaultRegion}
   stage: ${opt:stage, self:custom.defaultStage}
+  tracing: true
+  iamRoleStatements:
+    - Effect: Allow
+      Action: 
+        - 'xray:PutTraceSegments'
+        - 'xray:PutTelemetryRecords'
+      Resource: '*'
 
 custom:
   defaultRegion: eu-west-1
@@ -27,6 +40,7 @@ functions:
       - http:
           path: api/getTogethers
           method: get
+    iamRoleStatementsInherit: true
     iamRoleStatements:
       - Effect: Allow
         Action: dynamodb:scan
@@ -41,6 +55,7 @@ functions:
     events:
       - sns: ${self:custom.joinGetTogetherSnsTopicName}
     onError: !Ref NotifyOrganiserDLQSnsTopic
+    iamRoleStatementsInherit: true
     iamRoleStatements:
       - Effect: Allow
         Action: sns:Publish
@@ -59,6 +74,7 @@ functions:
           method: post
     environment:
       joinGetTogetherSnsTopic: ${self:custom.joinGetTogetherSnsTopic}
+    iamRoleStatementsInherit: true
     iamRoleStatements:
       - Effect: Allow
         Action: sns:Publish

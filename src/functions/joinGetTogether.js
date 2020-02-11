@@ -1,4 +1,5 @@
-const AWS = require("aws-sdk");
+const AWSXray = require("aws-xray-sdk");
+const AWS = AWSXray.captureAWS(require("aws-sdk"));
 const chance = require("chance").Chance();
 const SNS = require('@dazn/lambda-powertools-sns-client')
 const Log = require('@dazn/lambda-powertools-logger');
