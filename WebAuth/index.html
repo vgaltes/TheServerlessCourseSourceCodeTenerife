@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Authentication Demo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            html, body { font-family: "Amazon Ember", "Helvetica", "sans-serif"; margin: 0; }
+            a { color: #FF9900; }
+            h1 { font-weight: 300; }
+            .app { width: 100%; }
+            .app-header { color: white; text-align: center; background: linear-gradient(30deg, #f90 55%, #FFC300); width: 100%; margin: 0 0 1em 0; padding: 3em 0 3em 0; box-shadow: 1px 2px 4px rgba(0, 0, 0, .3); }
+            .app-logo { width: 126px; margin: 0 auto; }
+            .app-body { width: 400px; margin: 0 auto; text-align: center; }
+            .app-body button { background-color: #FF9900; font-size: 14px; color: white; text-transform: uppercase; padding: 1em; border: none; margin: 1em; }
+            .app-body button:hover { opacity: 0.8; }
+        </style>
+    </head>
+    <body>
+        <header>
+            AWS AUTHENTICATION DEMO <span id="UserLoggedIn"></span>
+        </header>
+        <div class="app">
+            <div class="app-body">
+                <div id="NotLoggedIn">
+                    <label for="SignInLogin">User</label>
+                    <input id="SignInLogin" type="text"><br>
+
+                    <label for="SignInPassword">Password</label>
+                    <input id="SignInPassword" type="password"><br>
+                    <button id="SignInButton">Sign In</button>
+
+                    <br><br><br>
+                    or signup
+                    <br><br><br>
+                    <label for="SignUpEmail">Email</label>
+                    <input id="SignUpEmail" type="text"><br>
+
+                    <label for="SignUpPassword">Password</label>
+                    <input id="SignUpPassword" type="password"><br>
+                    <button id="SignUpButton">Sign Up</button>
+
+                    <br><br><br>
+                    or enter confirmation code
+                    <br><br><br>
+
+                    <label for="ConfirmationCodeUser">User</label>
+                    <input id="ConfirmationCodeUser" type="text"><br>
+
+                    <label for="ConfirmationCodeCode">Code</label>
+                    <input id="ConfirmationCodeCode" type="text"><br>
+                    <button id="ConfirmUserButton">Confirm user</button>
+
+                </div>
+                <div id="LoggedIn">
+                    <button id="LogOutButton">Logout</button>
+                </div>
+                <br><br><br>
+                <div id="ResendCode">
+                    <button id="ResendVerificationEmail">Resend verification email</button>
+                </div>
+
+                <div id="SecuredEndpoint">
+                    <button id="RequestToSecuredEndpointButton">Request to secured endpoint</button>
+                </div>
+
+                <div id="NonSecuredEndpoint">
+                    <button id="RequestToNonSecuredEndpointButton">Request to non secured endpoint</button>
+                </div>
+                
+            </div>
+        </div>
+        <script src="main.bundle.js"></script>
+        <!-- <script src="dist/main.bundle.js"></script> -->
+    </body>
+</html>
