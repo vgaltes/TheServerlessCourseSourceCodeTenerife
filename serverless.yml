@@ -5,6 +5,7 @@ plugins:
   - serverless-pseudo-parameters
   - serverless-iam-roles-per-function
   - serverless-plugin-tracing
+  - serverless-plugin-aws-alerts
 
 package:
   exclude: 
@@ -32,6 +33,41 @@ custom:
   joinGetTogetherSnsTopic: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:${self:custom.joinGetTogetherSnsTopicName}
   notifyOrganiserDLQSnsTopicName: ${self:provider.stage}-joingettogetherdlq
   notifyOrganiserDLQSnsTopic: arn:aws:sns:#{AWS::Region}:#{AWS::AccountId}:${self:custom.notifyOrganiserDLQSnsTopicName}
+  notifications:
+    - protocol: email
+      endpoint: "vgaltes@gmail.com"
+  alerts:
+    dashboards: true
+
+    topics:
+      ok:
+        topic: ${self:service}-${self:provider.stage}-alerts-ok
+        notifications: ${self:custom.notifications}
+      alarm:
+        topic: ${self:service}-${self:provider.stage}-alerts-alarm
+        notifications: ${self:custom.notifications}
+      insufficientData:
+        topic: ${self:service}-${self:provider.stage}-alerts-insufficientData
+        notifications: ${self:custom.notifications}
+
+    definitions:
+      functionDurationP95:
+        namespace: 'AWS/Lambda'
+        metric: Duration
+        threshold: 100
+        statistic: 'p95'
+        period: 60
+        evaluationPeriods: 1
+        datapointsToAlarm: 1
+        comparisonOperator: GreaterThanThreshold
+        treatMissingData: missing
+
+    alarms:
+      - functionThrottles
+      - functionErrors
+      - functionInvocations
+      - functionDuration
+      - functionDurationP95
 
 functions:
   getGetTogethers:
