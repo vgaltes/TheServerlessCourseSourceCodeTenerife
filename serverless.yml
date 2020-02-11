@@ -150,3 +150,21 @@ resources:
       Type: AWS::SNS::Topic
       Properties: 
         TopicName: ${self:custom.notifyOrganiserDLQSnsTopicName}
+
+    CognitoUserPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+        UserPoolName: ${self:provider.stage}-testauthsls-user-pool
+        # Allow email addresses to be used as username
+        UsernameAttributes:
+          - email
+        AutoVerifiedAttributes:
+          - email
+
+    CognitoUserPoolClient:
+      Type: AWS::Cognito::UserPoolClient
+      Properties:
+        ClientName: ${self:provider.stage}-testauthsls-user-pool-client
+        UserPoolId:
+          Ref: CognitoUserPool
+        GenerateSecret: false
