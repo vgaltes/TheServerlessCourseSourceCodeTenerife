@@ -13,10 +13,10 @@ module.exports.handler = async () => {
 
   const resp = await dynamodb.scan(req).promise();
 
-  const res = {
+  const res2 = {
     statusCode: 200,
     body: JSON.stringify(resp.Items)
   };
 
-  return res;
+  return res2;
 };
